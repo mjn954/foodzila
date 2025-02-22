@@ -53,6 +53,13 @@ php artisan migrate
 
 این شد بخش adminpanel
 اگر سوالی داشتید  به 
+و برای بخش  پروفایل حتما حتما حتما 
+ دوتا فایل که اسموش
+cities
+provinces
+داخل database
+Import
+کنید
 ایمیل
 mjn265813@gmail.com
 پیام بدید
