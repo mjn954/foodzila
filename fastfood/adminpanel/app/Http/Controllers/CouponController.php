@@ -60,7 +60,13 @@ class CouponController extends Controller
 
     public function destroy(Coupon $coupon)
     {
-        $coupon->delete();
-        return redirect()->route('coupon.index')->with('warning', 'کد تخفیف با موفقیت حذف شد');
+        // حذف ارتباطات (مثلاً حذف کوپن از سفارش‌ها)
+        $coupon->orders()->update(['coupon_id' => null]);
+
+        // حذف کوپن از دیتابیس
+        $coupon->forceDelete();
+
+        return redirect()->route('coupon.index')->with('warning', 'کد تخفیف و داده‌های مرتبط با موفقیت حذف شدند');
     }
+
 }

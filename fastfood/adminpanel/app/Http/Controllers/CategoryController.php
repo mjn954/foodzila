@@ -55,7 +55,16 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        $category->delete();
-        return redirect()->route('category.index')->with('warning', 'دسته بندی با موفقیت حذف شد');
+        // حذف محصولات مرتبط با این دسته‌بندی
+      //  $category->products()->delete();
+
+        // حذف زیرمجموعه‌های این دسته‌بندی
+        $category->subcategories()->delete();
+
+        // حذف دسته‌بندی از دیتابیس
+        $category->forceDelete();
+
+        return redirect()->route('category.index')->with('warning', 'دسته‌بندی و تمام داده‌های وابسته با موفقیت حذف شدند');
     }
+
 }

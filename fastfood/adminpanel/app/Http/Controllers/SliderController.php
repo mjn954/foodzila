@@ -62,8 +62,9 @@ class SliderController extends Controller
     }
 
     public function destroy(Slider $slider)
-    {
-        $slider->delete();
-        return redirect()->route('slider.index')->with('warning', 'اسلایدر با موفقیت حذف شد');
-    }
+{
+    $slider->forceDelete(); // حذف کامل از دیتابیس
+    return redirect()->route('slider.index')->with('warning', 'اسلایدر با موفقیت از دیتابیس حذف شد');
+}
+
 }

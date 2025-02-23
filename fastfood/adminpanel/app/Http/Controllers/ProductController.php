@@ -100,7 +100,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        
+
         // dd($request->all());
         $request->validate([
             'primary_image' => 'nullable|image',
@@ -169,10 +169,17 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product)
-    {
-        $product->delete();
-        return redirect()->route('product.index')->with('warning', 'محصول با موفقیت حذف شد');
-    }
+{
+    // حذف تصاویر مرتبط
+    $product->images()->delete();
+
+    // حذف محصول از دیتابیس
+    $product->forceDelete();
+
+    return redirect()->route('product.index')->with('warning', 'محصول و تمامی داده‌های وابسته با موفقیت حذف شدند');
+}
+
+
 
     public function makeSlug($string)
     {

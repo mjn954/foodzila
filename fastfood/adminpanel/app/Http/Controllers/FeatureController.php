@@ -59,8 +59,14 @@ class FeatureController extends Controller
     }
 
     public function destroy(Feature $feature)
-    {
-        $feature->delete();
-        return redirect()->route('feature.index')->with('warning', 'ویژگی با موفقیت حذف شد');
-    }
+{
+    // حذف وابستگی‌ها (در صورت وجود)
+    $feature->options()->delete();
+
+    // حذف ویژگی از دیتابیس
+    $feature->forceDelete();
+
+    return redirect()->route('feature.index')->with('warning', 'ویژگی و داده‌های مرتبط با موفقیت حذف شدند');
+}
+
 }
