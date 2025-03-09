@@ -17,7 +17,7 @@
             maxZoom: 18,
         }).addTo(map);
         var marker = L.marker([35.700105, 51.400394]).addTo(map)
-            .bindPopup('<b>webprog.io</b>').openPopup();
+            .bindPopup('<b>foodzila</b>').openPopup();
     </script>
 @endsection
 
